@@ -1,16 +1,22 @@
-# This is a sample Python script.
+from utils.calculating_indicators import calculate_indicators
+from utils.tree import make_prediction
+from utils.parsing import read_data
+from utils.tree import build_tree
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+data = read_data()
+tree = build_tree(data)
 
+answers = []
+classes = []
+for cl, characteristics in data:
+    if cl not in classes:
+        classes.append(cl)
+    prediction = make_prediction(characteristics, tree)
+    print(f'Predicted: {prediction}, Real: {cl}')
+    answers.append((prediction, cl))
+accuracy, precision, recall = calculate_indicators(answers, classes)
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
-
-
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+print()
+print(f'Accuracy: {accuracy}')
+print(f'Precision: {precision}')
+print(f'Recall: {recall}')
