@@ -2,6 +2,7 @@ from utils.calculating_indicators import calculate_indicators
 from utils.tree import make_prediction
 from utils.parsing import read_data
 from utils.tree import build_tree
+from utils.drawing import draw_auc_roc, draw_auc_pr
 
 data = read_data()
 tree = build_tree(data)
@@ -19,3 +20,8 @@ print()
 print(f'Accuracy: {accuracy}')
 print(f'Precision: {precision}')
 print(f'Recall: {recall}')
+
+draw_auc_roc(answers)
+draw_auc_pr(answers, positive)
+
+
