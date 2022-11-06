@@ -7,14 +7,13 @@ data = read_data()
 tree = build_tree(data)
 
 answers = []
-classes = []
+positive = 'EDIBLE'
+
 for cl, characteristics in data:
-    if cl not in classes:
-        classes.append(cl)
     prediction = make_prediction(characteristics, tree)
     print(f'Predicted: {prediction}, Real: {cl}')
     answers.append((prediction, cl))
-accuracy, precision, recall = calculate_indicators(answers, classes)
+accuracy, precision, recall = calculate_indicators(answers, positive)
 
 print()
 print(f'Accuracy: {accuracy}')
