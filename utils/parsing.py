@@ -4,12 +4,14 @@ import random
 
 def read_data():
     result = []
-    amount_of_characteristics = 22
+    amount_of_characteristics = 6
     characteristics = list(range(1, amount_of_characteristics + 1))
-    random.shuffle(characteristics)
-    characteristics = characteristics[0:round(math.sqrt(amount_of_characteristics)):1]
+    # random.shuffle(characteristics)
+    # characteristics = characteristics[0:round(math.sqrt(amount_of_characteristics)):1]
     for line in open("data.csv").readlines():
         tokens = line.split(',')
+        for i in range(len(tokens)):
+            tokens[i] = tokens[i].replace("\n", "")
         result.append(
             (
                 tokens[0],
